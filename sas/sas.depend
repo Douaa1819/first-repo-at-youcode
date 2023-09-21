@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1695317190 source:c:\users\youco\documents\projet fin de sas\sas\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+
