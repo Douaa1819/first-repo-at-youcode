@@ -118,55 +118,26 @@ void trierEtAfficherTachesAlphabetique() {
         break;
 
     }
-    }}
-// statistique
-/*int stats(){
-
-        while(d<compt){
-            printf("la tache num %-20d ----> \n",d);
-            printf("Titre : %-20s  \n",ajt[d].titre);
-            printf("description : %-20s  \n",ajt[d].description);
-            printf("combien de jour reste  :  %-20d  \n",ajt[d].deadline);
-            printf("ID de tache %d:   \n",ajt[d].id);
-             switch(ajt[compt].st){
-        case 0: printf("status : TODO\n");
-
-        break;
-        case 1 :printf("status : DOING\n");
-        break;
-        case 2 : printf("status : Done\n");
-        break;
-
     }
+}
+// mofification
 
-            d++ ;
-
-        }
-}*/
-
-
-// modification
-
-
- void modif_desc(int x){
+ void modif_des(int x){
     char n[100];
-        printf("*************|Modifier la description|*************") ;
-        printf("donner un nouveau description : ");
+        printf("***********|Modifier la description|**********\n");
+        printf("entrer  une nouvelle description s'il vous plait \n: ");
         scanf(" %[^\n]",n);
-        strcpy(ajt[x].description,n);}
+        strcpy(ajt[x].description,n);
+ }
 
-        void modif_deadline(int x){
-    char n[100];
-        printf("**********|Modifier deadline|********** ");
-        printf("donner un noveau deadline : ");
-        scanf(" %[^\n]",n);
-        strcpy(ajt[x].deadline,n);}
 
- int main(){
+ int main()
+ {
     // ajtplusieurtaches
     int nbrTache = 0;
-    int t,k;
+    int t,k,x;
     int choix;
+    int idModif;
 
     do{
     printf("_____________________________MENU_____________________________\n");
@@ -193,7 +164,7 @@ void trierEtAfficherTachesAlphabetique() {
         nbrTache++;
     }
             break;
-            case 3:do {printf("______________________sous MENU de l afichage____________________________\n");
+            case 3:do{printf("______________________sous MENU de l afichage____________________________\n");
         printf("cliquez sur 1 pour Trier les tâches par ordre alphabétique  :\n");
         printf("cliquez sur 2 pour  Trier les tâches par deadline :\n");
         printf("cliquez sur 3 pour Afficher les tâches dont le deadline est dans 3 jours ou moins :\n");
@@ -207,49 +178,49 @@ void trierEtAfficherTachesAlphabetique() {
             }while(k);
 
 	break;
-	case 4:do {printf("______________________sous MENU de modifier une tache____________________________\n");
+	case 4:printf("______________________sous MENU de modifier une tache____________________________\n");
         printf("cliquez sur 1 pour modifier la description d'une tache :\n");
         printf("cliquez sur 2 pour modifier le statut d’une tache :\n");
         printf("cliquez sur 3 pour modifier le deadline d’une tache:\n");
         scanf("%d",&k);
-        switch(choix){
-            case 1:intvoid modif_desc();
+        printf("***********|Modifier une tache|**********\n");
+
+                    printf("Vouler vous modifier ? \n");
+                    printf("pour modifier taper le iD de tache que tu peux le  modifier \n :");
+                    scanf("%d",&idModif);
+                    for (int x = 0 ; x <= compt; x++){
+                    if(ajt[x].id == idModif){
+
+                        printf("-task        : %s\n", ajt[x].titre);
+                       /* printf("-status      : %s\n", ra9m[x].status);*/
+                        printf("-description : %s\n", ajt[x].description);}}
+                        /*printf("-deadline    : %d\n", ajt[x].date);*/
+                        /*printf("\033[0;33m***********|Modifier une tache|**********\n\n\033[0m");*/
+
+
+        switch(k){
+            case 1:modif_des(x);
+                k = 0;
             break;
-            case 2:
-                break;
-                case 3:
-        void modif_deadline();
-
-
-
-
-
-
         }
 
     case 5:
-    case 6:do {printf("______________________sous MENU de RECHERCHER les tache____________________________\n");
+    case 6:printf("______________________sous MENU de RECHERCHER les tache____________________________\n");
         printf("cliquez sur 1 pour rechercher une tache par son Identifiant:\n");
         printf("cliquez sur 2 pour Rechercher une tache par son Titre :\n");
-        scanf("%d",&k)
+        scanf("%d",&k);
 	case 7 :
-	    do {printf("______________________sous MENU Les Statistique____________________________\n");
+	    printf("______________________sous MENU Les Statistique____________________________\n");
         printf("cliquez sur 1 pour afficher le nombre total des tâches :\n");
         printf("cliquez sur 2 pour afficher le nombre de taches complètes et incomplètes :\n");
         printf("cliquez sur 3 pour afficher le nombre de jours restants jusqu'au délai de chaque tâche:\n");
         scanf("%d",&k);
 
-        /*if (compt==1){
-                        printf("choix invalide !!");
 
-                    }
-                   stats();
-                   d = 1;
-                    break;*/
 	}
 
 
  }while(choix != 8);
-
+// had lversion nj7aat bach der desc jdida
     return 0;
 }
