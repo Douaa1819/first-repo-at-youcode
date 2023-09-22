@@ -8,7 +8,6 @@ typedef struct
     int jour;
     int mois;
     int annee;
-    int heurs;
 } date;
 // status de task
 typedef enum statut
@@ -66,14 +65,6 @@ tache ajouteTache()
 
     do
     {
-        printf (" \n  entrer lheur :");
-        scanf("%d",&ajt[compt].deadline.heurs);
-    }
-    while (ajt[compt].deadline.heurs<=0 || ajt[compt].deadline.heurs >24 );
-
-
-    do
-    {
         printf(" ajouter le status ( 0:TODO/ 1:DOING/ 2:DONE ) :");
         scanf("%d",&n);
         ajt[compt].st=n;
@@ -90,7 +81,7 @@ void afficherTache()
 
     for (int x = 0; x<compt; x++)
     {
-        printf("**ID %-15d | Titre %-12s |Deadline %d/%d/%d/%-5d | ",ajt[x].id,ajt[x].titre,ajt[x].deadline.annee,ajt[x].deadline.mois,ajt[x].deadline.jour,ajt[x].deadline.heurs);
+        printf("**ID %-15d | Titre %-12s |Deadline %d/%d/%d/%-5d | ",ajt[x].id,ajt[x].titre,ajt[x].deadline.annee,ajt[x].deadline.mois,ajt[x].deadline.jour);
         switch(ajt[x].st)
         {
         case 0:
@@ -105,7 +96,6 @@ void afficherTache()
             break;
 
         }
-       /* printf("Statut: %s",ajt[x].st== TODO"TODO\n":ajt[x].st==DOING"DOING\n":ajt[x].st==DONE?"Done\n":"inconnu\n");*/
     }
 
 }
@@ -135,7 +125,7 @@ void trierEtAfficherTachesAlphabetique()
     printf("%-10s %-20s %-30s %-15s %-20s\n", "ID", "Titre", "Description", "Deadline");
     for (int e = 0; e <= f; e++)
     {
-        printf("%-10d %-20s %-30s %d/%d/%d/%-5d |\n",ajt[e].id, ajt[e].titre, ajt[e].description, ajt[e].deadline.annee,ajt[e].deadline.mois,ajt[e].deadline.jour,ajt[e].deadline.heurs);
+        printf("%-10d %-20s %-30s %d/%d/%-5d |\n",ajt[e].id, ajt[e].titre, ajt[e].description, ajt[e].deadline.annee,ajt[e].deadline.mois,ajt[e].deadline.jour,ajt[e]);
         switch(ajt[e].st)
         {
         case 0:
@@ -191,7 +181,7 @@ void rechercherparTitre()
 			{
 				printf("%-10s %-20s %-30s %-15s %-20s\n", "ID", "Titre", "Description", "Deadline", "Statut");
 			}
-			printf("**ID %-15d | Titre %-12s |Deadline %d/%d/%d/%-5d | ",ajt[j].id,ajt[j].titre,ajt[j].deadline.annee,ajt[j].deadline.mois,ajt[j].deadline.jour,ajt[j].deadline.heurs);
+			printf("**ID %-15d | Titre %-12s |Deadline %d/%d/%-5d | ",ajt[j].id,ajt[j].titre,ajt[j].deadline.annee,ajt[j].deadline.mois,ajt[j].deadline.jour,ajt[j]);
         switch(ajt[j].st)
         {
         case 0:
@@ -228,7 +218,7 @@ void rechercherParidentifiant()
 		if (ajt[j].id == idrecherch)
 		{
 			printf("%-10s %-20s %-30s %-15s %-20s\n", "ID", "Titre", "Description", "Deadline", "Statut");
-			printf("**ID %-15d | Titre %-12s |Deadline %d/%d/%d/%-5d | ",ajt[j].id,ajt[j].titre,ajt[j].deadline.annee,ajt[j].deadline.mois,ajt[j].deadline.jour,ajt[j].deadline.heurs);
+			printf("**ID %-15d | Titre %-12s |Deadline %d/%d/%-5d | ",ajt[j].id,ajt[j].titre,ajt[j].deadline.annee,ajt[j].deadline.mois,ajt[j].deadline.jour,ajt[j]);
         switch(ajt[j].st)
         {
         case 0:
@@ -275,6 +265,29 @@ void supprimerTacheParIdentifiant()
 		printf("Tâche avec l'ID %d non trouvée.\n", supId);
 	}
 }
+// hdxi khdam
+void afficherNombreTotalTaches()
+{
+	printf("Le nombre total de tâches est : %d\n", compt);
+}
+
+void afficherNombreTachesCompletesEtIncompletes()
+{
+	int completes = 0;
+	int incompletes = 0;
+
+	for (int j = 0; j <= i; j++)
+	{
+		if (strcmp (ajt[j].statut, "complet") == 0)
+			completes++;
+		else
+			incompletes++;
+	}
+
+	printf("Nombre de tâches complètes : %d\n", completes);
+	printf("Nombre de tâches incomplètes : %d\n", incompletes);
+}
+
 
 int main()
 {
@@ -283,6 +296,7 @@ int main()
     int t,k,x;
     int choix;
     int idModif;
+    int position_id=-1;
 
     do
     {
@@ -331,14 +345,15 @@ int main()
             }
             while(k!=4);
 
-            break;
-        case 4:{
-            int position_id=-1;
-         printf("______________________sous MENU de modifier une tache____________________________\n");
+        case 4:
+
+        do{ printf("______________________sous MENU de modifier une tache____________________________\n");
+            printf("cliquer sur 0 pour quitter :");
             printf("cliquez sur 1 pour modifier la description d'une tache :\n");
             printf("cliquez sur 2 pour modifier le statut d’une tache :\n");
             printf("cliquez sur 3 pour modifier le deadline d’une tache:\n");
             scanf("%d",&k);
+
             printf("***********|Modifier une tache|**********\n");
             printf("pour modifier taper le iD de tache que tu peux le  modifier \n :");
             scanf("%d",&idModif);
@@ -352,8 +367,9 @@ int main()
                     printf("-description : %s\n", ajt[x].description);
                 }
             }
+
                                                                                                                                    /*printf("-deadline    : %d\n", ajt[x].date);*/
-                                                                                                                                       /*printf("\033[0;33m***********|Modifier une tache|**********\n\n\033[0m");*/
+                                                                                                                                    /*printf("\033[0;33m***********|Modifier une tache|**********\n\n\033[0m");*/
 
 
             switch(k)
@@ -367,9 +383,8 @@ int main()
                 break;
             }
 
-        }
+        }while(k!=3);
 
-break;
         case 5:supprimerTacheParIdentifiant();
         break;
         case 6:
@@ -387,19 +402,26 @@ break;
             }while(k!=4);
 
         case 7 :
-            printf("______________________sous MENU Les Statistique____________________________\n");
+           do{  printf("______________________sous MENU Les Statistique____________________________\n");
+            printf("cliquez sur 0 pour quitter :\n");
             printf("cliquez sur 1 pour afficher le nombre total des tâches :\n");
             printf("cliquez sur 2 pour afficher le nombre de taches complètes et incomplètes :\n");
             printf("cliquez sur 3 pour afficher le nombre de jours restants jusqu'au délai de chaque tâche:\n");
             scanf("%d",&k);
 
+            switch (k){
+            case 1:afficherNombreTotalTaches();
+            break;
+            case 2:afficherNombreTachesCompletesEtIncompletes();
+            break;}
 
-        }
 
+
+        }while (k!=3);
 
 
     }
-    while(choix != 8);
+    }while(choix != 8);
 // had lversion nj7aat bach der desc jdida et recherch par titre ET supp
     return 0;
 }
